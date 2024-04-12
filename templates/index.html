@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image To Sketch</title>
+    <style>
+        .logo{
+            display: flex;
+            align-items: center;
+        }
+        .logo p{
+            font-size: 25px;
+            padding-left: 10px;  
+        }
+        .wrapper{
+            display: flex;
+            align-items: center;
+        }
+        ul{
+            list-style-type: none;
+            display: flex;
+            
+        }
+        a{
+            text-decoration: none;
+        }
+        .menu{
+            position: relative;
+            left: 25%;
+            color: black;
+            font-size: 20px;
+            font-weight: 400;
+        }
+        .menu ul li a:hover{
+            color: rgb(28, 218, 63);
+        }
+        .heading{
+            font-size: 70px;
+            color: rgb(33, 221, 80);
+            padding: 0px;
+        }
+        .define{
+            font-size: 20px;
+            justify-content: center;
+            padding: 0 300px 0 300px;
+        }
+        .custom-file-upload {
+            display: inline-block;
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: #fff;
+            border-radius: 5px;
+            border: none;
+            text-align: center;
+        }
+
+        .custom-file-upload:hover {
+            background-color: #2980b9;
+        }
+
+        /* Hide the default file input button */
+        input[type="file"] {
+            display: none;
+        }
+
+        /* Style the span element to display the file name */
+        .custom-file-upload span {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        .upload-button {
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .upload-button:hover {
+            background-color: #2980b9;
+        }
+
+        .uploadbutton{
+            padding-top: 20px;
+        }
+
+        .images {
+            display: flex;
+            justify-content: space-around;
+            position: relative;
+            top: 30px;
+            padding-bottom: 100px;
+        }
+
+        .download-button {
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .download-button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="logo">
+            <img src="images/image.png" alt="logo" width="140" height="70">
+            <p>Pencil Sketch</p>
+        </div>
+    </div>
+    <center>
+        <p class="heading">Image to Pencil Sketch Drawing AI Tool</p>
+        <p class="define">
+            Sketch AI tools harness the power of artificial intelligence to revolutionize the creative process, enabling artists to effortlessly transform rough sketches into polished digital illustrations. With features like auto-correction and intelligent stroke recognition, these tools empower designers to explore different styles and concepts while maintaining artistic integrity. From concept art to architectural sketches, AI assistance offers precision and efficiency, democratizing access to sophisticated design capabilities and pushing the boundaries of creative expression.
+        </p>
+        <p style="font-size: 50px;">Conversion</p>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <label for="file-input" class="custom-file-upload">
+                <span>Choose File</span>
+                <input type="file" id="file-input" name="file" accept="image/*">
+            </label>
+            <div class="uploadbutton">
+                <button type="submit" class="upload-button">Upload</button>
+            </div>
+        </form>
+        <div class="images">
+            {% if sketch %}
+                <div>
+                    <h2>Original Image</h2>
+                    <img src="{{ image }}" alt="Original Image" style="max-width: 500px;">
+                </div>
+                <div>
+                    <h2>Pencil Sketch</h2>
+                    <img src="{{ sketch }}" alt="Pencil Sketch" style="max-width: 500px;border: 2px solid #000; "><br>
+                    <!-- Add download button -->
+                    <a href="{{ sketch }}" download="pencil_sketch.jpg">
+                        <button class="download-button">Download Sketch</button>
+                    </a>
+                </div>
+            {% endif %}
+        </div>    
+    </center>
+</body>
+</html>
